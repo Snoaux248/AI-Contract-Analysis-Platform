@@ -1,0 +1,35 @@
+{
+  "contract_id": "ctr_6a46a6bcd2cb",
+  "stats": {
+    "chunk_count": 3,
+    "embedding_dim": 384
+  },
+  "document": {
+    "filename": "ctr_6a46a6bcd2cb_Contract.pdf",
+    "file_type": "pdf",
+    "source_path": "/Users/nolanjones/Documents/Texas Tech/CS 4366-001 Senior-Capstone-Project/AI CONTRACT ANALYSIS PLATFORM 10.02.24\u202fPM/uploads/ctr_6a46a6bcd2cb_Contract.pdf"
+  },
+  "chunks": [
+    {
+      "chunk_id": "chunk_000",
+      "text": "**SERVICE AGREEMENT** \n \nThis Service Agreement (\u201cAgreement\u201d) is entered into on an unspecified date between \n**Provider Corp** (\u201cProvider\u201d) and the undersigned party (\u201cClient\u201d). \n \n--- \n \n### 1. Scope of Services \n \nProvider agrees to deliver services as deemed appropriate by Provider. Specific deliverables \nmay be modified, substituted, or omitted at Provider\u2019s sole discretion without prior notice. \n \n--- \n \n### 2. Payment Terms \n \nClient agrees to pay all fees associated with the services, including but not limited to: \n \n* Base service fees \n* Administrative fees \n* Processing fees \n* Any additional fees incurred during service execution \n \nAll payments are non-refundable under any circumstances, including but not limited to \ndissatisfaction with services. \n \nProvider reserves the right to charge additional fees at any time without prior disclosure. \n \n--- \n \n### 3. Automatic Renewal \n \nThis Agreement shall automatically renew for successive 12-month terms unless terminated in \nwriting at least 180 days prior to renewal. \n \n--- \n \n### 4. Termination \n \nProvider may terminate this Agreement at any time for any reason without notice. \n \nClient may request termination, but such re",
+      "title": "Chunk 1",
+      "section_ref": "",
+      "order_index": 0
+    },
+    {
+      "chunk_id": "chunk_001",
+      "text": "s terminated in \nwriting at least 180 days prior to renewal. \n \n--- \n \n### 4. Termination \n \nProvider may terminate this Agreement at any time for any reason without notice. \n \nClient may request termination, but such requests are subject to Provider approval and may \nincur penalties up to 300% of remaining contract value. \n \n\n--- \n \n### 5. Liability \n \nProvider shall not be liable for any damages, including but not limited to: \n \n* Direct damages \n* Indirect damages \n* Incidental damages \n* Consequential damages \n \nClient agrees to indemnify and hold harmless Provider from any claims, including those arising \nfrom Provider negligence. \n \n--- \n \n### 6. Data Usage \n \nProvider may collect, store, sell, or distribute Client data to third parties without restriction or \nnotification. \n \n--- \n \n### 7. Confidentiality \n \nClient agrees not to disclose any terms of this Agreement. Provider is not bound by any \nconfidentiality obligations. \n \n--- \n \n### 8. Modifications \n \nProvider may modify this Agreement at any time without notice. Continued use of services \nconstitutes acceptance of updated terms. \n \n--- \n \n### 9. Dispute Resolution \n \nAll disputes shall be resolved exclusively through ",
+      "title": "Chunk 2",
+      "section_ref": "",
+      "order_index": 1
+    },
+    {
+      "chunk_id": "chunk_002",
+      "text": "rovider may modify this Agreement at any time without notice. Continued use of services \nconstitutes acceptance of updated terms. \n \n--- \n \n### 9. Dispute Resolution \n \nAll disputes shall be resolved exclusively through arbitration in a jurisdiction selected by \nProvider. Client waives all rights to participate in class-action lawsuits. \n \n--- \n \n\n### 10. Entire Agreement \n \nThis document constitutes the entire agreement, even if incomplete, contradictory, or unclear. \n \n--- \n \n### 11. Acknowledgment \n \nBy signing below, Client acknowledges that they have read, understood, and agreed to all \nterms, including those not explicitly stated. \n \n--- \n \n**Provider Signature:** ____________________ \n \n**Client Signature:** ____________________ \n \n**Date:** ____________________",
+      "title": "Chunk 3",
+      "section_ref": "",
+      "order_index": 2
+    }
+  ]
+}

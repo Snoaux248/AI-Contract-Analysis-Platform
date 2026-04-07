@@ -1,10 +1,21 @@
+import os
 from flask import Flask
+from dotenv import load_dotenv
+
 from views import views
 
-app = Flask(__name__)
-app.register_blueprint(views, url_prefix="/Capstone")
+
+def create_app() -> Flask:
+    """Create and configure Flask application."""
+    load_dotenv()
+    app = Flask(__name__)
+    app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret")
+    app.register_blueprint(views, url_prefix="/Capstone")
+    return app
 
 
-if __name__ == '__main__':
-    app.run(debug = True, port = 8001)
-    
+app = create_app()
+
+
+if __name__ == "__main__":
+    app.run(debug=True, port=8001)

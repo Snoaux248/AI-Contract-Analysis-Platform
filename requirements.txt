@@ -1,0 +1,9 @@
+Flask
+python-dotenv
+python-docx
+PyMuPDF
+sentence-transformers
+faiss-cpu
+numpy
+openai
+pytest

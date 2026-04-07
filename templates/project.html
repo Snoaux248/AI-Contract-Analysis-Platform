@@ -1,62 +1,46 @@
-<html>
-    <head>
-            <title></title>
-            <link rel="stylesheet" media="screen" href="/static/project/css/proj.css" type="text/css"/>
-            <link rel="stylesheet" href="/static/Fonts/stylesheet.css" type="text/css" charset="utf-8"/>
-                
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-            <script defer src="/static/project/js/proj.js"></script>
-    </head>
-    <body>
-        <div id="Output"> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Contract Analysis Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/project.css') }}" />
+</head>
+<body>
+<div class="page">
+    <h1>AI Contract Analysis Platform</h1>
 
+    <section class="card">
+        <h2>1) Upload Contract</h2>
+        <form id="uploadForm">
+            <input type="file" id="contractFile" name="file" accept=".pdf,.docx,.txt" required />
+            <button type="submit">Process Contract</button>
+        </form>
+        <p id="statusMessage" class="status"></p>
+        <div id="metadataPanel" class="hidden"></div>
+    </section>
 
+    <section class="card">
+        <h2>2) Ask Questions</h2>
+        <textarea id="questionInput" rows="3" placeholder="Ask a question about the processed contract..."></textarea>
+        <button id="askBtn">Ask</button>
+        <div id="answerPanel" class="result-block hidden">
+            <h3>Answer</h3>
+            <p id="answerText"></p>
+            <h3>Supporting Chunks</h3>
+            <div id="chunksList"></div>
+        </div>
+    </section>
 
-        </div>
-        <div id="Input">
-            <div id="Container">
-                <div id="Prompt">
-                   <textarea id="TextFeild" class="resizable-textarea"
-                    placeholder="Type here...">{{key}}</textarea>
-                </div>
-            </div>
-            <div>
-                <button id="FileUploadButton" type="submit"> 
-                    <span class="material-symbols-outlined"> upload </span>
-                </button>
-                <button id="FileButton" type="submit">
-                    <span class="material-symbols-outlined"> folder </span>
-                </button>
-            </div>
-        </div>
-        <div id="Drop">
-            <form id="Form" action="/upload" method="post" enctype="multipart/form-data">
-                <label for="file-upload">Please Drag and Drop <br> or Select a file</label>
-                <input type="file" class="fileUpload" style="display:none;" name="file_uploads[]" multiple>
-            </form>
-            <button id="AddFileButton" type="submit" onclick="chooseFiles()">
-                 <span class="material-symbols-outlined"> attach_file_add </span>
-            </Button>
-            <div id="DropErrors">
-                
-            </div>
-            <div id="Files">
-
-            </div>
-        </div>
-        <div id="Help"> 
-            <button id="HelpButton" type="submit">
-                 <span class="material-symbols-outlined"> help </span>
-            </Button>
-        </div>
-        <div id="SideBar" class="closed">
-            
-        </div>
-        <div id="Preview"> 
-            <button id="PreviewButton" type="submit">
-                 <span class="material-symbols-outlined"> Menu </span>
-            </Button>
-        </div>
-    </body>
-    
+    <section class="card">
+        <h2>3) Red Flag Analysis</h2>
+        <button id="redflagsBtn">Analyze Red Flags</button>
+        <div id="redflagPanel" class="result-block hidden"></div>
+    </section>
+</div>
+<script>
+    window.INITIAL_KEY = {{ key|tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/project.js') }}"></script>
+</body>
 </html>
