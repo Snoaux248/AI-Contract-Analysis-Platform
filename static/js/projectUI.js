@@ -3,21 +3,18 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("JS READY");
 
     // ================= STATE =================
-    let activeContractId = "";
-    let currentFile = 0;
-    let currentUploaded = 0;
-    const fileList = [];
+    var APICalls = new API();
 
     // ================= ELEMENTS =================
     const fileUpload = document.querySelector(".fileUpload");
     const Files = document.getElementById("Files");
     const Output = document.getElementById("Output");
     const TextFeild = document.getElementById("TextFeild");
-    const uploadBtn = document.getElementById("FileUploadButton");
-    const fileBtn = document.getElementById("FileButton");
     const Drop = document.getElementById("Drop");
     const SideBar = document.getElementById("SideBar");
-    const Preview = document.getElementById("Preview");
+
+    const uploadBtn = document.getElementById("FileUploadButton");
+    const fileBtn = document.getElementById("FileButton");
     const previewBtn = document.getElementById("PreviewButton");
 
     // ================= SAFETY CHECK =================
@@ -27,49 +24,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ================= FILE SELECT =================
-    window.chooseFiles = function (){
+    window.chooseFiles = function(){
         fileUpload.click();
     };
 
     fileUpload.addEventListener("change", () => {
         for(let i = 0; i < fileUpload.files.length; i++){
             if(fileUpload.files[i].type == "application/pdf"){
-            fileList.push(fileUpload.files[i]);
+            APICalls.fileList.push(fileUpload.files[i]);
             }
         }
-        currentFile = fileList.length;
-        refreshFileListUI();
+        APICalls.currentFile = APICalls.fileList.length;
+        Drop.refreshFileList();
     });
-
-    function refreshFileListUI(){
-        Files.innerHTML = "";
-
-        fileList.forEach((file, index) => {
-            const div = document.createElement("div");
-
-            const text = document.createElement("p");
-            text.innerText = file.name;
-
-            const button = document.createElement("button");
-            button.textContent = "clear";
-            button.className = "RemoveFileButton material-symbols-outlined";
-
-            if(index < currentUploaded){
-                button.disabled = true;
-            }
-
-            button.onclick = () => {
-                fileList.splice(index, 1);
-                currentFile = fileList.length;
-                refreshFileListUI();
-            };
-
-            div.appendChild(text);
-            div.appendChild(button);
-            Files.appendChild(div);
-        });
-    }
-
     // ================= UPLOAD =================
     uploadBtn.type = "button"; // 🔥 fix submit bug
 
@@ -77,18 +44,18 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         console.log("UPLOAD CLICKED");
 
-        if(currentFile === 0){
-            display_model_response(" Please upload a contract first.");
+        if(APICalls.currentFile === 0){
+            Output.appendModelResponse(" Please upload a contract first.");
             return;
         }
 
-        const file = fileList[0];
+        const file = APICalls.fileList[0];
         const formData = new FormData();
         formData.append("file", file);
 
         try{
             Drop.close();
-            display_model_response(`Processing contract... ${fileList[0].name}`);
+            Output.appendModelResponse(`Processing contract... ${APICalls.fileList[0].name}`);
 
             const response = await fetch("/Capstone/api/upload", {
                 method: "POST",
@@ -102,125 +69,75 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error(data.error || "Upload failed");
             }
 
-            activeContractId = data.contract_id;
-            currentUploaded = currentFile;
+            APICalls.activeContractId = data.contract_id;
+            APICalls.currentUploaded = APICalls.currentFile;
 
-            display_model_response(`Contract processed: ${data.filename}`);
+            Output.appendModelResponse(`Contract processed: ${data.filename}`);
 
-            updateSidebarUI();
+            SideBar.updateUI();
 
-            await fetchRedFlags();
+            await APICalls.fetchRedFlags();
 
             if(TextFeild.value.trim().length > 0){
-                await promptModelWithText();
+                await APICalls.promptModelWithText();
             }
         }catch(err){
             Drop.open();
             console.error(err);
-            display_model_response(" Upload failed: " + err.message);
+            Output.appendModelResponse(" Upload failed: " + err.message);
+        }
+    });
+    
+
+    // ================= Button EL =================
+    previewBtn.addEventListener("click", () => {
+        if(SideBar.isOpened()){
+            SideBar.close();
+        }else{
+            SideBar.open();
         }
     });
 
-    // ================= RED FLAGS =================
-    async function fetchRedFlags(){
-        if(!activeContractId){
-            return;
-        }
-
-        try{
-            display_model_response("Analyzing red flags...");
-
-            const response = await fetch("/Capstone/api/redflags", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ contract_id: activeContractId })
-            });
-
-            const data = await response.json();
-            console.log("REDFLAGS:", data);
-
-            if(!response.ok || !data.success){
-                throw new Error(data.error || "Red flag analysis failed");
-            }
-
-            if(!data.red_flags.length){
-                display_model_response(" No red flags detected.");
-                return;
-            }
-            let color = "red";
-            data.red_flags.forEach(flag => {
-                flag.excerpt = flag.excerpt.replace(/^### (.*$)/gim, "<h4 style=\"margin:3px;\">$1</h4>").replace(/^--- $/gim, "<hr>");
-                display_model_response(`
-                    <div style="margin-left: 16px;">${flag.title}</div>
-                    <div style="margin-left: 16px;">
-                      Severity: <span style="color: ${Severities[flag.severity]};">${flag.severity}</span>
-                    </div>
-                    <div style="margin-left: 16px;">${flag.explanation}</div>
-                    <div style="margin-left: 16px;">"${flag.excerpt}"</div>
-                `);
-            });
-
-        }catch(err){
-            console.error(err);
-            display_model_response(" Red flag error: " + err.message);
-        }
-    }
-    const Severities = {
-        high: 'red',
-        medium: 'orange',
-        low: 'yellow',
-        none: 'green'
-    };
-
-    // ================= ASK =================
-    async function promptModelWithText(){
-        const question = TextFeild.value.trim();
-        if(question.length === 0 || !activeContractId){
-            return;
-        }
-        appendUserMessage(question);
-        TextFeild.value = "";
-
-        try{
-            const response = await fetch("/Capstone/api/ask", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    contract_id: activeContractId,
-                    question: question
-                })
-            });
-
-            const data = await response.json();
-            console.log("ASK RESPONSE:", data);
-
-            if(!response.ok || !data.success){
-                throw new Error(data.error || "Question failed");
-            }
-
-            display_model_response(data.answer.replace(/\[chunk_(\d+)\]/g, '\n<br><br><br>$1').replace(/LLM API key not configured\. Showing best retrieved excerpts instead\./g, ''));
-
-        }catch(err){
-            console.error(err);
-            display_model_response("Ask error: " + err.message);
-        }
-    }
-
-    // ================= ENTER =================
     TextFeild.addEventListener("keydown", (e) => {
         if (e.key === "Enter" && e.shiftKey){
             e.preventDefault();
 
-            if(currentUploaded === 0){
+            if(APICalls.currentUploaded === 0){
                 uploadBtn.click();
             }else{
-                promptModelWithText();
+                APICalls.promptModelWithText();
             }
         }
     });
 
-    // ================= CHAT UI =================
-    function appendUserMessage(text){
+    
+    fileBtn.addEventListener("click", (e) => {
+        console.log("click");
+        Drop.toggleView();
+    });
+
+    // ================= DRAG DROP EL =================
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(event => {
+        Drop.addEventListener(event, e => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    });
+    ['dragenter', 'dragover'].forEach(eventName => {
+        Drop.addEventListener(eventName, () => {
+            Drop.classList.add('drag-over');
+        }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        Drop.addEventListener(eventName, () => {
+            Drop.classList.remove('drag-over');
+        }, false);
+    });
+
+     // ================= CHAT UI =================
+
+    Output.appendUserMessage = function(text){
         const div = document.createElement("div");
         div.className = "userdiv";
 
@@ -229,11 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
         p.innerText = text;
 
         div.appendChild(p);
-        Output.appendChild(div);
-        Output.scrollTop = Output.scrollHeight;
+        this.appendChild(div);
+        this.scrollTop = this.scrollHeight;
     }
-
-    function display_model_response(text){
+    Output.appendModelResponse = function(text){
         console.log("MODEL:", text);
 
         const div = document.createElement("div");
@@ -244,9 +160,9 @@ document.addEventListener("DOMContentLoaded", () => {
         p.innerHTML = text;
 
         div.appendChild(p);
-        Output.appendChild(div);
+        this.appendChild(div);
 
-        Output.scrollTop = Output.scrollHeight;
+        this.scrollTop = this.scrollHeight;
     }
 
     // ================= SIDEBAR =================
@@ -282,53 +198,24 @@ document.addEventListener("DOMContentLoaded", () => {
         div.appendChild(p);
         SideBar.appendChild(div);
     };
-
-    function updateSidebarUI(){
-        SideBar.innerHTML = "";
-        fileList.forEach(file => {
-            SideBar.addFile(file.name, file);
+    SideBar.updateUI = function(){
+        this.innerHTML = "";
+        APICalls.fileList.forEach(file => {
+            this.addFile(file.name, file);
         });
-        SideBar.open();
+        this.open();
     }
-
-    // toggle sidebar
-    previewBtn.addEventListener("click", () => {
-        if(SideBar.isOpened()){
-            SideBar.close();
-        }else{
-            SideBar.open();
-        }
-    });
-
-    // ================= DRAG DROP =================
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(event => {
-        Drop.addEventListener(event, e => {
-            e.preventDefault();
-            e.stopPropagation();
-        });
-    });
-    ['dragenter', 'dragover'].forEach(eventName => {
-        Drop.addEventListener(eventName, () => {
-            Drop.classList.add('drag-over');
-        }, false);
-    });
-
-    ['dragleave', 'drop'].forEach(eventName => {
-        Drop.addEventListener(eventName, () => {
-            Drop.classList.remove('drag-over');
-        }, false);
-    });
-
+    // ================= DROP =================
     Drop.addEventListener("drop", (e) => {
         const files = e.dataTransfer.files;
         fileUpload.files = files;
 
         for(let i = 0; i < files.length; i++){
-            fileList.push(files[i]);
+            APICalls.fileList.push(files[i]);
         }
 
-        currentFile = fileList.length;
-        refreshFileListUI();
+        APICalls.currentFile = APICalls.fileList.length;
+        Drop.refreshFileList();
     });
 
     Drop.isClosed = function(){
@@ -361,10 +248,133 @@ document.addEventListener("DOMContentLoaded", () => {
         Drop.classList.remove("closed");
         Drop.classList.add("opened");
     }
-    
-    fileBtn.addEventListener("click", (e) => {
-        console.log("click");
-        Drop.toggleView();
-    });
+
+    Drop.refreshFileList = function(){
+        Files.innerHTML = "";
+
+        APICalls.fileList.forEach((file, index) => {
+            const div = document.createElement("div");
+
+            const text = document.createElement("p");
+            text.innerText = file.name;
+
+            const button = document.createElement("button");
+            button.textContent = "clear";
+            button.className = "RemoveFileButton material-symbols-outlined";
+
+            if(index < APICalls.currentUploaded){
+                button.disabled = true;
+            }
+
+            button.onclick = () => {
+                APICalls.fileList.splice(index, 1);
+                APICalls.currentFile = APICalls.fileList.length;
+                Drop.refreshFileList();
+            };
+
+            div.appendChild(text);
+            div.appendChild(button);
+            Files.appendChild(div);
+        });
+    }
 
 });
+
+class API{
+
+    constructor(){
+        this.activeContractId = "";
+        this.currentFile = 0;
+        this.currentUploaded = 0;
+        this.fileList = [];
+        this.severities = {
+            high: 'red',
+            medium: 'orange',
+            low: 'yellow',
+            none: 'green'
+        };
+    }
+    // ================= RED FLAGS =================
+    async fetchRedFlags(){
+        if(!this.activeContractId){
+            return;
+        }
+
+        try{
+            Output.appendModelResponse("Analyzing red flags...");
+
+            const response = await fetch("/Capstone/api/redflags", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ contract_id: this.activeContractId })
+            });
+
+            const data = await response.json();
+            console.log("REDFLAGS:", data);
+
+            if(!response.ok || !data.success){
+                throw new Error(data.error || "Red flag analysis failed");
+            }
+
+            if(!data.red_flags.length){
+                Output.appendModelResponse(" No red flags detected.");
+                return;
+            }
+            data.red_flags.forEach(flag => {
+                flag.excerpt = flag.excerpt.replace(/^### (.*$)/gim, "<h4 style=\"margin:3px;\">$1</h4>").replace(/^--- $/gim, "<hr>");
+                console.log(`<div style="margin-left: 16px;">${flag.title}</div>
+                    <div style="margin-left: 16px;">
+                      Severity: <span style="color: ${this.severities[flag.severity]};">${flag.severity}</span>
+                    </div>
+                    <div style="margin-left: 16px;">${flag.explanation}</div>
+                    <div style="margin-left: 16px;">"${flag.excerpt}"</div>`);
+                Output.appendModelResponse(`
+                    <div style="margin-left: 16px;">${flag.title}</div>
+                    <div style="margin-left: 16px;">
+                      Severity: <span style="color: ${this.severities[flag.severity]};">${flag.severity}</span>
+                    </div>
+                    <div style="margin-left: 16px;">${flag.explanation}</div>
+                    <div style="margin-left: 16px;">"${flag.excerpt}"</div>
+                `);
+            });
+
+        }catch(err){
+            console.error(err);
+            Output.appendModelResponse(" Red flag error: " + err.message);
+        }
+    }
+
+    // ================= ASK =================
+    async promptModelWithText(){
+        const question = TextFeild.value.trim();
+        if(question.length === 0 || !this.activeContractId){
+            return;
+        }
+        Output.appendUserMessage(question);
+        TextFeild.value = "";
+
+        try{
+            const response = await fetch("/Capstone/api/ask", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contract_id: this.activeContractId,
+                    question: question
+                })
+            });
+
+            const data = await response.json();
+            console.log("ASK RESPONSE:", data);
+
+            if(!response.ok || !data.success){
+                throw new Error(data.error || "Question failed");
+            }
+
+            Output.appendModelResponse(data.answer.replace(/\[chunk_(\d+)\]/g, '\n<br><br><br>$1').replace(/LLM API key not configured\. Showing best retrieved excerpts instead\./g, ''));
+
+        }catch(err){
+            console.error(err);
+            Output.appendModelResponse("Ask error: " + err.message);
+        }
+    }
+}
