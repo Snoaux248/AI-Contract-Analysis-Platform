@@ -5,11 +5,13 @@
             <link rel="stylesheet" href="/static/Fonts/stylesheet.css" type="text/css" charset="utf-8"/>
                 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+            <script defer src="/static/js/API.js"></script>
             <script defer src="/static/js/projectUI.js"></script>
     </head>
     <body>
         <div id="Output"> 
-
+        
 
 
         </div>
@@ -24,7 +26,7 @@
                 <button id="FileUploadButton" type="submit"> 
                     <span class="material-symbols-outlined"> upload </span>
                 </button>
-                <button id="FileButton" type="submit">
+                <button id="FileButton" class="active" type="submit">
                     <span class="material-symbols-outlined"> folder </span>
                 </button>
             </div>
@@ -52,8 +54,78 @@
         <div id="SideBar" class="closed">
             
         </div>
-        <div id="Preview"> 
-            <button id="PreviewButton" type="submit">
+
+        <div id="FullScreenViewer" class="closed">
+            <div id="FullScreenViewer2">
+                <div id="FullScreenViewerTitle">
+
+                </div>
+                <div id="FullScreenViewerPDF">
+
+                </div>
+            </div>
+            <div id="FullScreenViewerFlags" class="red">
+                <div id="redFlags" class="large">
+                    <div id="redFlagsTitle" class="active">
+                        <h3 style="margin:0px;"> Red Flags </h3>
+                    </div>
+                    <div id="redFlagsBody" class="active">
+                        <div class="active">
+
+                        </div>
+                        <div class="neighbor">
+
+                        </div>
+                        <div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="whiteFlags" class="small">
+                    <div id="whiteFlagsTitle" class="inactive">
+                        <h3 style="margin:0px;"> White Flags </h3>
+                    </div>
+                    <div id="whiteFlagsBody" class="inactive">
+                        <div class="active">
+
+                        </div>
+                        <div class="neighbor">
+
+                        </div>
+                        <div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="Preview" > 
+            <button id="PreviewButton" class="inactive" type="submit" style="z-index:10;">
                  <span class="material-symbols-outlined"> Menu </span>
             </Button>
         </div>

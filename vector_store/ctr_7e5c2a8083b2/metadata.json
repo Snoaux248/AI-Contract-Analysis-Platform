@@ -1,0 +1,77 @@
+{
+  "contract_id": "ctr_7e5c2a8083b2",
+  "stats": {
+    "chunk_count": 9,
+    "embedding_dim": 384
+  },
+  "document": {
+    "filename": "ctr_7e5c2a8083b2_Stage1_Group14.pdf",
+    "file_type": "pdf",
+    "source_path": "/Users/nolanjones/Documents/Texas Tech/CS 4366-001 Senior-Capstone-Project/AI CONTRACT ANALYSIS PLATFORM 10.02.24\u202fPM/uploads/ctr_7e5c2a8083b2_Stage1_Group14.pdf"
+  },
+  "chunks": [
+    {
+      "chunk_id": "chunk_000",
+      "text": "AI ASSISTED\nCONTRACT\nREVIEW\nSYSTEM\nSoftware Requirement Specification\n\n\n\nFEBRUARY 24, 2026\nSENIOR CAPSTONE PROJECT\n\nJames Mitchell Vore\nAI Data Analytics\nNemaLife Inc\nLubbock, Tx\njvore@ttu.edu\nEthan Benjamin\nChilds\nData Engineering\nPaccar\nDenten, Tx\nEtchilds@ttu.edu\nNathan Cannon\nStudent\nTexas Tech\nLubbock, TX\nNate.Cannon2004@g\nmail.com\nNolan Austin Jones\nStudent\nTexas Tech\nLubbock, Tx\nnolajone@ttu.edu\nTejas Sonni\nStudent\nTexas Tech\nLubbock, Tx\ntesoni@ttu.edu\n\nSoftware Requirements Specification (SRS)\nAI-Assisted Contract Review System\n\nAbstract\nThis document presents the Software Requirements\nSpecification (SRS) for the AI-Assisted Contract Review\nSystem. The proposed system leverages natural language\nprocessing (NLP), semantic embeddings, and vector-\nbased information retrieval to assist users in analyzing\nlegal contracts. Users will be able to upload contract\ndocuments, submit natural language questions, and\nreceive responses grounded in the contract\u2019s contents.\nAdditionally, the system will identify predefined high-risk\nclauses, commonly referred to as red flags, and provide\nstructured explanations. The goal of this project is to\ndemonstrate the practical application of modern AI\ntechniques in document analysis while maintaining\nmodular system architecture, clear limitations, and\nresponsible AI usage.",
+      "title": "Preamble",
+      "section_ref": "",
+      "order_index": 0
+    },
+    {
+      "chunk_id": "chunk_001",
+      "text": "Contracts are foundational to business operations,\nemployment agreements, vendor relationships, and\nintellectual property management. Despite their\nimportance, contracts are often lengthy, complex, and\nwritten in dense legal language that can be difficult for\nnon-experts to interpret. Individuals and small\norganizations frequently lack immediate access to legal\nprofessionals, making it challenging to quickly\nunderstand obligations, liabilities, termination conditions,\nand risk exposure.\nRecent advancements in artificial intelligence, particularly\nin natural language processing, provide new opportunities\nfor intelligent document analysis. Large language models\nand semantic embedding techniques allow text to be\nrepresented numerically in a way that captures meaning\nrather than simple keyword overlap. By combining\nsemantic search with structured system design, it is\npossible to build assistive tools that help users navigate\ncomplex documents more efficiently.\nThe AI-Assisted Contract Review System aims to apply\nthese technologies to contract analysis. The system is not\nintended to replace legal professionals or provide legal\nadvice. Instead, it functions as an educational and\nanalytical support tool that highlights relevant clauses and\nsurfaces potential risks based on predefined criteria.",
+      "title": "1. Introduction",
+      "section_ref": "",
+      "order_index": 1
+    },
+    {
+      "chunk_id": "chunk_002",
+      "text": "The system allows users to upload contracts in PDF,\nDOCX, or TXT format. After upload, the document is\nprocessed and segmented into structured clauses. Each\nclause is converted into a semantic embedding using a\npre-trained embedding model. These embeddings are\nstored in a vector database to enable efficient similarity\nsearch.\nWhen a user submits a question, the system converts the\nquestion into an embedding and retrieves the most\nsemantically relevant contract clauses using cosine\nsimilarity. These retrieved clauses are returned through an\nAPI endpoint and can be passed to a question-answering\nmodule for response generation. Simultaneously, the\nsystem analyzes the contract for predefined red-flag\npatterns.",
+      "title": "2. Overall Description",
+      "section_ref": "",
+      "order_index": 2
+    },
+    {
+      "chunk_id": "chunk_003",
+      "text": "The system architecture consists of four primary\ncomponents: (1) Document Ingestion and Preprocessing,\n(2) Semantic Retrieval Engine, (3) Question Answering\nModule, and (4) Red Flag Detection Engine. The\narchitecture follows a modular design, allowing each\ncomponent to operate independently while\ncommunicating through defined APIs.\nThe Semantic Retrieval Engine is the core component\nresponsible for embedding generation, vector storage, and\nsimilarity search. It acts as the bridge between raw\ncontract data and higher-level reasoning modules.",
+      "title": "3. System Architecture",
+      "section_ref": "",
+      "order_index": 3
+    },
+    {
+      "chunk_id": "chunk_004",
+      "text": "FR1: The system shall accept contract uploads in PDF,\nDOCX, and TXT formats.\nFR2: The system shall extract and preprocess contract text\ninto structured clauses.\nFR3: The system shall generate semantic embeddings for\neach clause using a pre-trained model.\nFR4: The system shall store embeddings in a vector\ndatabase optimized for similarity search.\nFR5: The system shall retrieve the top-k relevant clauses\nin response to user queries.\nFR6: The system shall provide an API endpoint for\nretrieval operations.\n\nFR7: The system shall identify predefined red-flag\nclauses and assign severity levels.\nFR8: The system shall return structured JSON responses\ncontaining clause metadata and similarity scores.",
+      "title": "4. Functional Requirements",
+      "section_ref": "",
+      "order_index": 4
+    },
+    {
+      "chunk_id": "chunk_005",
+      "text": "NFR1: The system shall maintain response times suitable\nfor interactive use.\nNFR2: The system shall be modular, maintainable, and\nextensible.\nNFR3: The system shall clearly state limitations and\ndisclaim legal advice.\nNFR4: The system shall handle contracts of varying\nlength without significant degradation in performance.\nNFR5: The system shall ensure secure handling of\nuploaded documents during processing.",
+      "title": "5. Non-Functional Requirements",
+      "section_ref": "",
+      "order_index": 5
+    },
+    {
+      "chunk_id": "chunk_006",
+      "text": "This project demonstrates the integration of AI\ntechnologies into practical software systems. By enabling\nsemantic search and automated risk identification, the\nsystem improves accessibility to legal information and\nreduces the cognitive burden associated with contract\nreview. While it does not replace professional legal\nadvice, it serves as a powerful assistive tool for\npreliminary analysis and educational exploration.",
+      "title": "6. Impact and Usefulness",
+      "section_ref": "",
+      "order_index": 6
+    },
+    {
+      "chunk_id": "chunk_007",
+      "text": "The group will meet bi-weekly, once on Tuesday and\nonce on Thursday, both after the scheduled class time.\nThese meetings will be used to review progress, address\ntechnical challenges, ensure alignment between\ncomponents, and verify that project milestones are being\nmet. Additional meetings may be scheduled as needed\nprior to major deliverables.\nEthan Childs serves as the Project Lead and is\nresponsible for ensuring compliance with assignment\nrequirements and maintaining alignment with the\nSoftware Requirements Specification. He will oversee\noverall system integration, monitor progress toward\ndeadlines, manage the group schedule, and ensure that all\nsubmission requirements are met on time.\nNolan Jones is responsible for front-end development\nand document preprocessing. He will design and\nimplement the user interface that accepts contract uploads\nand user queries. Additionally, he will handle document\nparsing and segmentation, breaking down submitted\ncontracts into structured chunks. These chunks will be\nformatted into a JSON-based structure suitable for\nprocessing by the embedding pipeline.\nJames Vore is responsible for building the semantic\nretrieval and embedding pipeline. He will select and\nintegrate a pre-trained embedding model, convert contract\nchunks into semantic vector representations, and store\nthose vectors in a vector database. He will implement\nsimilarity search functionality to retrieve the top-k most\nrelevant clauses in response to user queries. Additionally,\nhe will develop the API endpoint that exposes this\nretrieval functionality to other system components.\nNate Cannon is responsible for LLM integration and\nquestion-answering functionality. He will design and\nimplement prompt templates that use retrieved contract\nclauses as context, integrate the large language model\nAPI, and ensure responses are grounded in the contract\ntext. He will also implement guardrails to reduce\nhallucination and ensure that outputs clearly reference\nrelevant contract sections.\nTejas Soni is responsible for the red-flag detection\nfunctionality. He will define a taxonomy of high-risk\ncontract clauses, including but not limited to unilateral",
+      "title": "7. Group Assignments and Schedule",
+      "section_ref": "",
+      "order_index": 7
+    },
+    {
+      "chunk_id": "chunk_008",
+      "text": "and arbitration provisions. He will implement rule-based\ndetection logic and, if feasible, integrate LLM-based\nclassification to identify nuanced risk patterns. He will\nalso assign severity levels and generate structured\nexplanations for flagged clauses.\nTogether, the team\u2019s modular division of responsibilities\nensures that each component can be developed\nindependently while maintaining a cohesive and well-\nintegrated overall system architecture.",
+      "title": "termination, uncapped liability, broad indemnification,",
+      "section_ref": "",
+      "order_index": 8
+    }
+  ]
+}
