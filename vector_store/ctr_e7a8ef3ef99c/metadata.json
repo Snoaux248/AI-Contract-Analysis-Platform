@@ -1,0 +1,112 @@
+{
+  "contract_id": "ctr_e7a8ef3ef99c",
+  "stats": {
+    "chunk_count": 14,
+    "embedding_dim": 384
+  },
+  "document": {
+    "filename": "ctr_e7a8ef3ef99c_Contract2.pdf",
+    "file_type": "pdf",
+    "source_path": "/Users/nolanjones/Documents/Texas Tech/CS 4366-001 Senior-Capstone-Project/MVP/uploads/ctr_e7a8ef3ef99c_Contract2.pdf"
+  },
+  "chunks": [
+    {
+      "chunk_id": "chunk_000",
+      "text": "RESIDENTIAL LEASE AGREEMENT ____________________________ This Residential Lease Agreement (\"Agreement\") is entered into by and between the Landlord and the Tenant for the rental of the residential property described herein. This Agreement sets forth the terms and conditions under which the Tenant shall lease the property and the obligations of both parties.",
+      "title": "Preamble",
+      "section_ref": "",
+      "order_index": 0
+    },
+    {
+      "chunk_id": "chunk_001",
+      "text": "The Landlord hereby leases to the Tenant the premises located at 123 Main Street, Apt 4B, City, State, ZIP. The premises include all fixtures, appliances, and improvements currently on the property. Tenant acknowledges that they have inspected the premises and accepts it in its current condition, except as otherwise documented in writing at the time of move-in.",
+      "title": "1. PROPERTY",
+      "section_ref": "",
+      "order_index": 1
+    },
+    {
+      "chunk_id": "chunk_002",
+      "text": "The lease shall commence on January 1, 2026, and shall terminate on December 31, 2026, unless terminated earlier in accordance with this Agreement. Any renewal of this Agreement shall be in writing and signed by both parties. Early",
+      "title": "2. TERM",
+      "section_ref": "",
+      "order_index": 2
+    },
+    {
+      "chunk_id": "chunk_003",
+      "text": "Agreement.",
+      "title": "termination by the Tenant may be subject to penalties as defined in this",
+      "section_ref": "",
+      "order_index": 3
+    },
+    {
+      "chunk_id": "chunk_004",
+      "text": "Tenant agrees to pay monthly rent in the amount of $1,500, due on the first (1st) day of each month. Rent shall be payable to the Landlord at the address provided or via an alternative method mutually agreed upon. Failure to pay rent within five (5) days of the due date will incur a late fee of $50, and continued nonpayment may result in legal action, including eviction.",
+      "title": "3. RENT",
+      "section_ref": "",
+      "order_index": 4
+    },
+    {
+      "chunk_id": "chunk_005",
+      "text": "Tenant shall pay a security deposit equal to one month\u2019s rent, amounting to $1,500, prior to taking possession of the premises. The security deposit shall be held by the Landlord in accordance with state law and may be used to cover unpaid rent, damages beyond normal wear and tear, or other breaches of this Agreement. The balance of the deposit, if any, shall be returned to the Tenant within thirty (30) days after termination of the tenancy.",
+      "title": "4. SECURITY DEPOSIT",
+      "section_ref": "",
+      "order_index": 5
+    },
+    {
+      "chunk_id": "chunk_006",
+      "text": "Unless written notice of non-renewal is provided by either party at least sixty (60) days prior to the expiration of this Agreement, the lease shall automatically renew for successive one-year terms under the same conditions. Notice of termination must be delivered in writing and may be hand-delivered, mailed, or sent via electronic communication if mutually agreed upon.",
+      "title": "5. AUTOMATIC RENEWAL",
+      "section_ref": "",
+      "order_index": 6
+    },
+    {
+      "chunk_id": "chunk_007",
+      "text": "Tenant agrees to keep the premises in a clean and habitable condition, performing minor maintenance tasks as necessary. Tenant shall promptly notify the Landlord of any defects or repairs required. The Landlord is responsible for major structural repairs and for ensuring that essential systems, including plumbing, electrical, and heating, remain operational.",
+      "title": "6. MAINTENANCE AND REPAIRS",
+      "section_ref": "",
+      "order_index": 7
+    },
+    {
+      "chunk_id": "chunk_008",
+      "text": "Tenant shall be responsible for payment of all utilities and services associated with the premises, including electricity, water, gas, sewer, and internet services, unless otherwise agreed in writing. Failure to maintain utility accounts in good standing may be considered a breach of this Agreement.",
+      "title": "7. UTILITIES",
+      "section_ref": "",
+      "order_index": 8
+    },
+    {
+      "chunk_id": "chunk_009",
+      "text": "The Landlord may enter the premises during reasonable hours with at least twenty-four (24) hours\u2019 notice to inspect, repair, or show the property to prospective tenants or buyers. Entry without prior notice is permitted only in case of emergency threatening life, health, or property. Tenant shall not unreasonably withhold consent for necessary entry.",
+      "title": "8. ENTRY BY LANDLORD",
+      "section_ref": "",
+      "order_index": 9
+    },
+    {
+      "chunk_id": "chunk_010",
+      "text": "No pets shall be kept on the premises without prior written consent from the Landlord. Approved pets may require additional deposits or monthly fees, and the Tenant is responsible for any damage caused by pets. The Landlord reserves the right to revoke permission for pets that cause disturbances or violate local ordinances.",
+      "title": "9. PET POLICY",
+      "section_ref": "",
+      "order_index": 10
+    },
+    {
+      "chunk_id": "chunk_011",
+      "text": "Tenant agrees to conduct themselves in a manner that does not disturb neighbors or violate community rules. Excessive noise, illegal activity, or harassment of other tenants is strictly prohibited. Violations may result in fines, penalties, or termination of the lease.",
+      "title": "10. NOISE AND CONDUCT",
+      "section_ref": "",
+      "order_index": 11
+    },
+    {
+      "chunk_id": "chunk_012",
+      "text": "Tenant is assigned one parking space associated with the premises. Parking of unregistered or unauthorized vehicles may result in towing at the Tenant\u2019s expense. Vehicles must comply with local regulations and community rules, including restrictions on commercial or oversized vehicles.",
+      "title": "11. PARKING",
+      "section_ref": "",
+      "order_index": 12
+    },
+    {
+      "chunk_id": "chunk_013",
+      "text": "This Agreement shall be governed by and construed in accordance with the laws of the state in which the premises are located. Any disputes arising under this Agreement shall be resolved in the appropriate state or local courts. ------------------------------------------------------------ Landlord Signature: _________________________ Date: __________ Tenant Signature: _________________________ Date: __________",
+      "title": "12. GOVERNING LAW",
+      "section_ref": "",
+      "order_index": 13
+    }
+  ]
+}

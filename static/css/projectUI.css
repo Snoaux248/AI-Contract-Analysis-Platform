@@ -121,6 +121,110 @@ form{
     display: block;
 }
 
+.pdf-page-wrapper {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    margin: 0 auto 16px auto;
+}
+
+.pdf-page-wrapper .pdf-page {
+    position: relative;
+    z-index: 0;
+    display: block;
+}
+
+.textLayer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0.2;
+    line-height: 1;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.textLayer span {
+    position: absolute;
+    transform-origin: 0 0;
+    color: transparent;
+    white-space: pre;
+}
+
+.pdf-highlight-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.pdf-highlight-box {
+    position: absolute;
+    background: rgba(255, 230, 0, 0.35);
+    border: 2px solid rgba(255, 0, 0, 0.6);
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+#redFlagsBody > div.flag-panel-card.red-flag-card-selected {
+    box-shadow: 0 0px 8px 4px rgb(222, 225, 255);
+}
+
+#redFlagsBody > div.flag-panel-card.red-flag-locate-failed {
+    position: relative;
+}
+
+#redFlagsBody > div.flag-panel-card.red-flag-locate-failed::after {
+    content: "location not found";
+    position: absolute;
+    right: 8px;
+    bottom: 4px;
+    font-size: 10px;
+    color: rgba(120, 0, 0, 0.65);
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    pointer-events: none;
+}
+
+#redFlagsBody > div.flag-panel-card .red-flag-citation {
+    margin: 10px 0px;
+    padding: 8px 10px 8px 12px;
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 8px 8px 8px 8px;
+    max-width: 100%;
+    overflow: visible;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    box-shadow:inset 0px 0px 8px -2px rgb(130, 130, 130);
+}
+
+#redFlagsBody > div.flag-panel-card .red-flag-citation-label {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #5a5a7a;
+    margin-bottom: 4px;
+}
+
+#redFlagsBody > div.flag-panel-card .red-flag-citation-quote {
+    font-size: 13px;
+    line-height: 1.35;
+    font-style: italic;
+    color: #222;
+}
+
+#redFlagsBody > div.flag-panel-card .red-flag-citation-meta {
+    font-size: 11px;
+    color: #555;
+    margin-top: 6px;
+}
+
+#redFlagsBody > div.flag-panel-card .red-flag-card-title {
+    font-weight: bold;
+}
+
 
 #Prompt{
     width:calc(100% - 115px);
@@ -278,7 +382,7 @@ form{
     flex-flow: wrap;
     gap: 15px 15px;
 
-    padding:70px 10px 10px 10px;
+    padding:10px 10px 10px 10px;
 
     overflow:scroll;
     width:calc((100% - 960px) / 2);
@@ -391,7 +495,7 @@ form{
     border-radius: 15px;
 
     display: grid;
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: 50px 1fr;
     gap: 20px;
 }
 
@@ -425,8 +529,24 @@ form{
     grid-column:1;
     grid-row:1;
     border-radius: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: bolder;
+    padding:7.5px 15px 7.5px 70px;
+}
 
-    padding:15px 15px 15px 70px;
+.contract-stats-inline span strong {
+    font-size: 1rem;
+    font-weight:bold;
+    color: #111;
+}
+
+#redFilter, #whiteFilter{
+    font-size: 25px;
+    font-family:'Material Symbols';
+    position:absolute;
+    right:20px;
+    top:15px;
 }
 
 #FullScreenViewerPDF{
@@ -449,9 +569,7 @@ form{
 
     min-height: 0;
     height:100%;
-    
-    border:1px solid #fff;
-    box-shadow: 0px 0px 8px 4px rgb(222, 225, 255);
+
     border-radius: 15px;
 }
 
@@ -463,7 +581,6 @@ form{
     height:100%;
     
     border:1px solid #fff;
-    box-shadow: 0px 0px 8px 4px rgb(222, 225, 255);
     border-radius: 15px;
 }
 
@@ -531,15 +648,21 @@ form{
     transition:.3s;
 }
 
+#redFlagsBody div.active:hover, #whiteFlagsBody div.active:hover{
+    box-shadow:0px 0px 8px 4px rgba(152, 156, 222, 0.5) !important;
+}
+
 #redFlagsTitle h3, #whiteFlagsTitle h3{
     margin:auto 0px;
     position:relative;
     top:22px;
+    font-family: Arial, Helvetica, sans-serif;
     align-items: center;
     align-self: center;
     align-content: center;
     text-align: center;
 }
+
 
 #redFlagsTitle.inactive, #whiteFlagsTitle.inactive{
     border-radius: 10px;
@@ -551,10 +674,11 @@ form{
 }
 
 #redFlagsBody.active, #whiteFlagsBody.active{
-
+    
     border-radius: 10px;
     padding:10px;
     height: calc(100% - 80px);
+    overflow:hidden;
     transition:.3s;
 }
 
@@ -568,19 +692,41 @@ form{
 
 #redFlagsBody,
 #whiteFlagsBody {
-    overflow: hidden !important;
+    overflow-x: hidden !important;
+    overflow-y: auto;
     overflow-anchor: none;
 }
-#redFlagsBody div, #whiteFlagsBody div{
-    padding:15px;
-    transition:.3s;
+
+#redFlagsBody > div.flag-panel-card,
+#whiteFlagsBody > div.flag-panel-card {
+    padding: 15px;
+    transition: 0.3s;
     font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+    overflow-y: visible;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
-#redFlagsBody div:hover, #whiteFlagsBody div:hover{
-    border:1px solid #fff;
+#redFlagsBody > div.flag-panel-card .red-flag-card-content,
+#whiteFlagsBody > div.flag-panel-card .red-flag-card-content {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+    overflow: visible;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+#redFlagsBody > div.flag-panel-card:hover,
+#whiteFlagsBody > div.flag-panel-card:hover {
+    border: 1px solid #fff;
     box-shadow: 0px 0px 8px 4px rgb(222, 225, 255);
-    transition:.3s;
+    transition: 0.3s;
 }
 
 
@@ -592,34 +738,106 @@ form{
     right:10px;
     opacity:0;
 }
-#redFlagsBody div.active span.expansionIcon{
-    opacity:1;
+#redFlagsBody > div.flag-panel-card.active span.expansionIcon {
+    opacity: 1;
 }
-#redFlagsBody div.neighbor span.expansionIcon{
-    opacity :0;
+#redFlagsBody > div.flag-panel-card.neighbor span.expansionIcon {
+    opacity: 0;
 }
 
-#redFlagsBody div, #whiteFlagsBody div{
+#whiteFlagsBody > div.flag-panel-card.active span.expansionIcon {
+    opacity: 1;
+}
+#whiteFlagsBody > div.flag-panel-card.neighbor span.expansionIcon {
+    opacity: 0;
+}
+
+#redFlagsBody > div.flag-panel-card,
+#whiteFlagsBody > div.flag-panel-card {
     position: relative;
-
     background: #eeefff;
-    border:1px solid #fff !important;
-    border-radius:10px;
-    min-height:100px;
-    max-height:100px;
-
+    border: 1px solid #fff !important;
+    border-radius: 10px;
+    min-height: 100px;
+    max-height: none;
     opacity: 0.6;
     transform: scale(0.85);
-    overflow:scroll;
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-#redFlagsBody div.neighbor, #whiteFlagsBody div.neighbor{
+#redFlagsBody > div.flag-panel-card.neighbor,
+#whiteFlagsBody > div.flag-panel-card.neighbor {
+    box-shadow: 0px 0px 8px 4px rgb(222, 225, 255);
     opacity: 0.7;
-    transform: scale(0.90);
+    transform: scale(0.9);
 }
 
-#redFlagsBody div.active, #whiteFlagsBody div.active{
+#redFlagsBody > div.flag-panel-card.active,
+#whiteFlagsBody > div.flag-panel-card.active {
+    box-shadow: 0px 0px 8px 4px rgb(222, 225, 255);
     opacity: 1;
     transform: scale(1);
+}
+
+#redFlagsBody div.flag-panel-card, #whiteFlagsBody div.flag-panel-card{
+    min-height:132px;
+    max-height:132px;
+}
+
+#Sort{
+    display:inline-flex;
+    font-family:'Material Icons';
+    justify-content: right;
+    font-size: 20px;
+    height: 30px;
+    padding:20px;
+    margin-left:60px;
+    width: calc(100% - 60px);
+}
+
+#Sort span.white{
+    font-family:'Material Symbols';
+    transform:translateY(-2px);
+}
+#Sort span.red{
+    color:rgb(171, 0, 0);
+}
+
+#Sort span, #Sort div{
+    width:20%;
+}
+
+.contract-stats-inline {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    font-size: .85rem;
+    font-weight:normal;
+    color: #444;
+}
+
+.contract-stats-inline span strong {
+    font-size: 1rem;
+    font-weight:bold;
+    color: #111;
+}
+
+#redFilter, #whiteFilter{
+    font-size: 25px;
+    font-family:'Material Symbols';
+    position:absolute;
+    right:20px;
+    top:15px;
+}
+#redFilter.black, #whiteFilter.black, #redFilter.yellow:hover, #whiteFilter.yellow:hover{
+    color:black;
+}
+#redFilter.red, #whiteFilter.red, #redFilter.black:hover, #whiteFilter.black:hover{
+    color:red;
+}
+#redFilter.orange, #whiteFilter.orange, #redFilter.red:hover, #whiteFilter.red:hover{
+    color:orange;  
+}
+#redFilter.yellow, #whiteFilter.yellow, #redFilter.orange:hover, #whiteFilter.orange:hover{
+    color:yellow;
 }

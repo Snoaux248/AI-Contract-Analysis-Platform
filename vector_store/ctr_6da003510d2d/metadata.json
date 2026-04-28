@@ -1,0 +1,105 @@
+{
+  "contract_id": "ctr_6da003510d2d",
+  "stats": {
+    "chunk_count": 13,
+    "embedding_dim": 384
+  },
+  "document": {
+    "filename": "ctr_6da003510d2d_Document11.pdf",
+    "file_type": "pdf",
+    "source_path": "/Users/nolanjones/Documents/Texas Tech/CS 4366-001 Senior-Capstone-Project/MVP/uploads/ctr_6da003510d2d_Document11.pdf"
+  },
+  "chunks": [
+    {
+      "chunk_id": "chunk_000",
+      "text": "AGREEMENT This Agreement is made between Party A and Party B on a date that may be determined later.",
+      "title": "Preamble",
+      "section_ref": "",
+      "order_index": 0
+    },
+    {
+      "chunk_id": "chunk_001",
+      "text": "The purpose of this Agreement is to work together on something mutually beneficial, the specifics of which may be discussed in the future.",
+      "title": "1. Purpose",
+      "section_ref": "",
+      "order_index": 1
+    },
+    {
+      "chunk_id": "chunk_002",
+      "text": "Party A agrees to pay Party B an amount to be decided at a later time or as deemed appropriate by Party A. Payment timing will depend on circumstances and general satisfaction.",
+      "title": "2. Payment",
+      "section_ref": "",
+      "order_index": 2
+    },
+    {
+      "chunk_id": "chunk_003",
+      "text": "Both parties agree to perform their responsibilities as needed. Specific duties will be understood implicitly or communicated informally.",
+      "title": "3. Responsibilities",
+      "section_ref": "",
+      "order_index": 3
+    },
+    {
+      "chunk_id": "chunk_004",
+      "text": "This Agreement will begin at some point and will continue until one or both parties feel it should end.",
+      "title": "4. Term",
+      "section_ref": "",
+      "order_index": 4
+    },
+    {
+      "chunk_id": "chunk_005",
+      "text": "Either party may terminate this Agreement for any reason, or no reason, without notice.",
+      "title": "5. Termination",
+      "section_ref": "",
+      "order_index": 5
+    },
+    {
+      "chunk_id": "chunk_006",
+      "text": "Neither party will be responsible for anything that happens, regardless of cause.",
+      "title": "6. Liability",
+      "section_ref": "",
+      "order_index": 6
+    },
+    {
+      "chunk_id": "chunk_007",
+      "text": "Any confidential information, if any, should probably not be shared, but exceptions may apply.",
+      "title": "7. Confidentiality",
+      "section_ref": "",
+      "order_index": 7
+    },
+    {
+      "chunk_id": "chunk_008",
+      "text": "This Agreement will be governed by applicable laws, wherever that may be.",
+      "title": "8. Governing Law",
+      "section_ref": "",
+      "order_index": 8
+    },
+    {
+      "chunk_id": "chunk_009",
+      "text": "In the event of a dispute, the parties may attempt to resolve it through discussion or other means if they choose to do so.",
+      "title": "9. Dispute Resolution",
+      "section_ref": "",
+      "order_index": 9
+    },
+    {
+      "chunk_id": "chunk_010",
+      "text": "This Agreement may be changed at any time by either party.",
+      "title": "10. Amendments",
+      "section_ref": "",
+      "order_index": 10
+    },
+    {
+      "chunk_id": "chunk_011",
+      "text": "This document may represent the entire agreement, unless there are other agreements.",
+      "title": "11. Entire Agreement",
+      "section_ref": "",
+      "order_index": 11
+    },
+    {
+      "chunk_id": "chunk_012",
+      "text": "The parties may sign this Agreement if they want to. Party A: ___________________ Party B: ___________________ Date: ___________________ If you want, I can generate a \u201cslightly more realistic but still subtly flawed\u201d version next\u2014that\u2019s often harder for detection systems to catch.",
+      "title": "12. Signatures",
+      "section_ref": "",
+      "order_index": 12
+    }
+  ]
+}

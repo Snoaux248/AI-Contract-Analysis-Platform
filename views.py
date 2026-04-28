@@ -7,13 +7,14 @@ from flask import Blueprint, jsonify, render_template, request
 from services.contract_service import ContractService
 from services.qa_service import QAService
 from services.redflag_service import RedFlagService
-
+from services.whiteflag_service import WhiteFlagService
 
 views = Blueprint(__name__, "views")
 BASE_DIR = Path(__file__).resolve().parent
 contract_service = ContractService(BASE_DIR / "uploads", BASE_DIR / "vector_store")
 qa_service = QAService()
 redflag_service = RedFlagService()
+whiteflag_service = WhiteFlagService()
 
 
 @views.route("/Project/")
@@ -90,9 +91,24 @@ def analyze_redflags():
             raise ValueError("contract_id is required")
 
         contract_payload = contract_service.store.load_contract(contract_id)
-        flags = redflag_service.analyze(contract_payload.get("chunks", []))
+        chunks = contract_payload.get("chunks", [])
+        flags = redflag_service.analyze(chunks)
 
-        return jsonify({"success": True, "contract_id": contract_id, "red_flags": flags})
+        def semantic_search(query: str, top_k: int = 4):
+            query_vector = contract_service.embedding.embed_query(query)
+            results = contract_service.store.query(contract_id, query_vector, top_k=top_k)
+            return [{"score": r.score, "chunk": r.chunk} for r in results]
+
+        white_flags = whiteflag_service.detect_white_flags(chunks, embedding_index=semantic_search)
+
+        return jsonify(
+            {
+                "success": True,
+                "contract_id": contract_id,
+                "red_flags": flags,
+                "white_flags": white_flags,
+            }
+        )
     except FileNotFoundError as exc:
         return jsonify({"success": False, "error": str(exc)}), 404
     except Exception as exc:

@@ -1,3 +1,68 @@
+function redFlagDedupeKey(f) {
+    function norm(s) {
+        return String(s || "")
+            .toLowerCase()
+            .replace(/\s+/g, " ")
+            .trim();
+    }
+    return [norm(f.title), norm(f.category), norm(f.excerpt), norm(f.match_text), norm(f.highlight_text)].join("||");
+}
+
+function citationQuoteLen(f) {
+    return ((f.citation_quote || "") + "").trim().length;
+}
+
+function preferRedFlagForDedupe(f, cur) {
+    var ln = citationQuoteLen(f);
+    var lc = citationQuoteLen(cur);
+    if (ln && lc && ln !== lc) return ln < lc;
+    if (ln && !lc) return true;
+    if (lc && !ln) return false;
+    var a = f.chunk_id || "";
+    var b = cur.chunk_id || "";
+    if (a && b && a < b) return true;
+    if (a && !b) return true;
+    return false;
+}
+
+function dedupeRedFlags(list) {
+    if (!Array.isArray(list)) return [];
+    var best = {};
+    for (var i = 0; i < list.length; i++) {
+        var f = list[i];
+        var k = redFlagDedupeKey(f);
+        if (!best[k]) {
+            best[k] = f;
+            continue;
+        }
+        if (preferRedFlagForDedupe(f, best[k])) best[k] = f;
+    }
+    return Object.keys(best).map(function (key) {
+        return best[key];
+    });
+}
+
+function dedupeWhiteFlags(list) {
+    if (!Array.isArray(list)) return [];
+    var byId = {};
+    for (var i = 0; i < list.length; i++) {
+        var f = list[i] || {};
+        var id = String(f.id || "").trim();
+        if (!id) continue;
+        if (!byId[id]) {
+            byId[id] = f;
+            continue;
+        }
+        var cur = byId[id];
+        var a = (f.best_match || "").trim().length;
+        var b = (cur.best_match || "").trim().length;
+        if (a > b) byId[id] = f;
+    }
+    return Object.keys(byId).map(function (k) {
+        return byId[k];
+    });
+}
+
 class API{
 
     constructor(){
@@ -9,6 +74,9 @@ class API{
 
         this.filePreviewList = [];
         this.fileFlagStorageList = [];
+        this.fileWhiteFlagStorageList = [];
+
+        this.currentFile = 0;
 
         this.severities = {
             high: 'red',
@@ -16,6 +84,30 @@ class API{
             low: 'yellow',
             none: 'green'
         };
+    }
+
+    async sortFileFlagsBySeverity(index){
+        const severityOrder = {
+            high: 3,
+            medium: 2,
+            low: 1,
+            none: 0
+        };
+
+        if (
+            !this.fileFlagStorageList ||
+            index < 0 ||
+            index >= this.fileFlagStorageList.length
+        ) {
+            return;
+        }
+
+        const flags = this.fileFlagStorageList[index];
+
+        flags.sort((a, b) => {
+            return (severityOrder[b.severity?.toLowerCase()] || 0) -
+                   (severityOrder[a.severity?.toLowerCase()] || 0);
+        });
     }
 
 
@@ -112,9 +204,8 @@ class API{
         }*/
     }
 
-    async fetchRedFlags(contractId){
+    async fetchRedFlags(contractId, index){
         console.log("ContractId " + contractId);
-            Output.appendModelResponse("Analyzing red flags...");
 
             const response = await fetch("/Capstone/api/redflags", {
                 method: "POST",
@@ -123,17 +214,18 @@ class API{
             });
 
             const data = await response.json();
-            this.fileFlagStorageList.push(data.red_flags);
-            console.log(this.fileFlagStorageList);
+            const redFlags = dedupeRedFlags(data.red_flags || []);
+            const whiteFlags = dedupeWhiteFlags(data.white_flags || []);
+            this.fileFlagStorageList.push(redFlags);
+            this.fileWhiteFlagStorageList.push(whiteFlags);
+            await this.sortFileFlagsBySeverity(index);
 
             if(!response.ok || !data.success){
                 throw new Error(data.error || "Red flag analysis failed");
             }
 
-            if(!data.red_flags.length){
-                Output.appendModelResponse(" No red flags detected.");
-                return;
-            }
+            Output.appendModelResponse(redFlags.length + " Red flags : White flags " + whiteFlags.length);
+
             //APICalls.displayRedFlags(data);
     }
 

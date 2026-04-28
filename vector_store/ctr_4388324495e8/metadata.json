@@ -1,0 +1,126 @@
+{
+  "contract_id": "ctr_4388324495e8",
+  "stats": {
+    "chunk_count": 16,
+    "embedding_dim": 384
+  },
+  "document": {
+    "filename": "ctr_4388324495e8_Document10.pdf",
+    "file_type": "pdf",
+    "source_path": "/Users/nolanjones/Documents/Texas Tech/CS 4366-001 Senior-Capstone-Project/MVP/uploads/ctr_4388324495e8_Document10.pdf"
+  },
+  "chunks": [
+    {
+      "chunk_id": "chunk_000",
+      "text": "SERVICE AGREEMENT This Service Agreement (\u201cAgreement\u201d) is made effective as of __________ (\u201cEffective Date\u201d), by and between __________, located at __________ (\u201cProvider\u201d), and __________, located at __________ (\u201cClient\u201d).",
+      "title": "Preamble",
+      "section_ref": "",
+      "order_index": 0
+    },
+    {
+      "chunk_id": "chunk_001",
+      "text": "Provider agrees to perform the following services: ________________________________________________ The services shall include, but are not limited to, tasks as determined necessary during the course of the engagement.",
+      "title": "1. Scope of Services",
+      "section_ref": "",
+      "order_index": 1
+    },
+    {
+      "chunk_id": "chunk_002",
+      "text": "This Agreement shall commence on the Effective Date and shall continue until __________, unless terminated earlier or extended automatically as agreed.",
+      "title": "2. Term",
+      "section_ref": "",
+      "order_index": 2
+    },
+    {
+      "chunk_id": "chunk_003",
+      "text": "Client agrees to pay Provider the amount of $__________ for services rendered. Payment shall be made within a reasonable time after receipt of invoice. Late payments may incur additional fees as applicable.",
+      "title": "3. Compensation",
+      "section_ref": "",
+      "order_index": 3
+    },
+    {
+      "chunk_id": "chunk_004",
+      "text": "Provider shall be responsible for all expenses unless otherwise agreed. Client may reimburse certain expenses subject to prior approval where necessary.",
+      "title": "4. Expenses",
+      "section_ref": "",
+      "order_index": 4
+    },
+    {
+      "chunk_id": "chunk_005",
+      "text": "Both parties agree to keep confidential any proprietary or sensitive information disclosed during the term of this Agreement, except where disclosure is required or deemed appropriate.",
+      "title": "5. Confidentiality",
+      "section_ref": "",
+      "order_index": 5
+    },
+    {
+      "chunk_id": "chunk_006",
+      "text": "Any materials developed under this Agreement shall belong to __________. Provider may retain rights to use such materials for portfolio or internal purposes.",
+      "title": "6. Intellectual Property",
+      "section_ref": "",
+      "order_index": 6
+    },
+    {
+      "chunk_id": "chunk_007",
+      "text": "Provider is an independent contractor and not an employee of Client. Nothing in this Agreement shall be construed to create a partnership, joint venture, or agency relationship.",
+      "title": "7. Independent Contractor",
+      "section_ref": "",
+      "order_index": 7
+    },
+    {
+      "chunk_id": "chunk_008",
+      "text": "Either party may terminate this Agreement at any time by providing notice. Upon termination, Client shall pay for all services performed up to the termination date.",
+      "title": "8. Termination",
+      "section_ref": "",
+      "order_index": 8
+    },
+    {
+      "chunk_id": "chunk_009",
+      "text": "Provider shall not be liable for any indirect, incidental, or consequential damages arising from this Agreement. Liability shall be limited to the total amount paid under this Agreement.",
+      "title": "9. Limitation of Liability",
+      "section_ref": "",
+      "order_index": 9
+    },
+    {
+      "chunk_id": "chunk_010",
+      "text": "Client agrees to indemnify and hold harmless Provider from any claims, damages, or liabilities arising out of the use of services provided.",
+      "title": "10. Indemnification",
+      "section_ref": "",
+      "order_index": 10
+    },
+    {
+      "chunk_id": "chunk_011",
+      "text": "This Agreement shall be governed by the laws of __________.",
+      "title": "11. Governing Law",
+      "section_ref": "",
+      "order_index": 11
+    },
+    {
+      "chunk_id": "chunk_012",
+      "text": "Any disputes arising under this Agreement shall be resolved through appropriate means as determined by the parties.",
+      "title": "12. Dispute Resolution",
+      "section_ref": "",
+      "order_index": 12
+    },
+    {
+      "chunk_id": "chunk_013",
+      "text": "This Agreement constitutes the entire agreement between the parties and supersedes all prior understandings.",
+      "title": "13. Entire Agreement",
+      "section_ref": "",
+      "order_index": 13
+    },
+    {
+      "chunk_id": "chunk_014",
+      "text": "This Agreement may be amended as necessary with agreement.",
+      "title": "14. Amendments",
+      "section_ref": "",
+      "order_index": 14
+    },
+    {
+      "chunk_id": "chunk_015",
+      "text": "All notices under this Agreement shall be delivered to the addresses listed above or as otherwise designated. IN WITNESS WHEREOF, the parties have executed this Agreement as of the Effective Date. Provider: _________________________ Name: _______________________________ Title: _______________________________ Date: _______________________________ Client: ___________________________ Name: _______________________________ Title: _______________________________ Date: _______________________________",
+      "title": "15. Notices",
+      "section_ref": "",
+      "order_index": 15
+    }
+  ]
+}

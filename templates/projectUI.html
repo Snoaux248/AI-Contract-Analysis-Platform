@@ -52,7 +52,13 @@
             </Button>
         </div>
         <div id="SideBar" class="closed">
-            
+            <div id="Sort">
+                <span id="timeSort"> alarm </span>
+                <span id="alphaSort"> sort_by_alpha </span>
+                <span id="redFlagSort" class="red"> flag </span>
+                <span id="whiteFlagSort" class="white"> flag </span>
+                <span id="sortOrder"> arrow_drop_down </span>
+            </div>    
         </div>
 
         <div id="FullScreenViewer" class="closed">
@@ -68,6 +74,7 @@
                 <div id="redFlags" class="large">
                     <div id="redFlagsTitle" class="active">
                         <h3 style="margin:0px;"> Red Flags </h3>
+                        <span id="redFilter" class="black"> tune <span></span>
                     </div>
                     <div id="redFlagsBody" class="active">
                         <div class="active">
@@ -96,6 +103,7 @@
                 <div id="whiteFlags" class="small">
                     <div id="whiteFlagsTitle" class="inactive">
                         <h3 style="margin:0px;"> White Flags </h3>
+                        <span id="whiteFilter" class="black"> tune <span>
                     </div>
                     <div id="whiteFlagsBody" class="inactive">
                         <div class="active">

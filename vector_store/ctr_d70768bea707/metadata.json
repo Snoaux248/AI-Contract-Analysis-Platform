@@ -1,0 +1,49 @@
+{
+  "contract_id": "ctr_d70768bea707",
+  "stats": {
+    "chunk_count": 5,
+    "embedding_dim": 384
+  },
+  "document": {
+    "filename": "ctr_d70768bea707_Contract.pdf",
+    "file_type": "pdf",
+    "source_path": "/Users/nolanjones/Documents/Texas Tech/CS 4366-001 Senior-Capstone-Project/MVP/uploads/ctr_d70768bea707_Contract.pdf"
+  },
+  "chunks": [
+    {
+      "chunk_id": "chunk_000",
+      "text": "**SERVICE AGREEMENT** This Service Agreement (\u201cAgreement\u201d) is entered into on an unspecified date between **Provider Corp** (\u201cProvider\u201d) and the undersigned party (\u201cClient\u201d). --- ### 1. Scope of Services Provider agrees to deliver services as deemed appropriate by Provider. Specific deliverables may be modified, substituted, or omitted at Provider\u2019s sole discretion without prior notice. --- ### 2. Payment Terms Client agrees to pay all fees associated with the services, including but not limited to: * Base service fees * Administrative fees * Processing fees * Any additional fees incurred during service execution All payments are non-refundable under any circumstances, including but not limited to dissatisfaction with services. Provider reserves the right to charge additional fees at any time without prior disclosure. --- ### 3.",
+      "title": "Document \u2014 Part 1",
+      "section_ref": "",
+      "order_index": 0
+    },
+    {
+      "chunk_id": "chunk_001",
+      "text": "Payment Terms Client agrees to pay all fees associated with the services, including but not limited to: * Base service fees * Administrative fees * Processing fees * Any additional fees incurred during service execution All payments are non-refundable under any circumstances, including but not limited to dissatisfaction with services. Provider reserves the right to charge additional fees at any time without prior disclosure. --- ### 3. Automatic Renewal This Agreement shall automatically renew for successive 12-month terms unless terminated in writing at least 180 days prior to renewal. --- ### 4. Termination Provider may terminate this Agreement at any time for any reason without notice. Client may request termination, but such requests are subject to Provider approval and may incur penalties up to 300% of remaining contract value. --- ### 5.",
+      "title": "Document \u2014 Part 2",
+      "section_ref": "",
+      "order_index": 1
+    },
+    {
+      "chunk_id": "chunk_002",
+      "text": "Termination Provider may terminate this Agreement at any time for any reason without notice. Client may request termination, but such requests are subject to Provider approval and may incur penalties up to 300% of remaining contract value. --- ### 5. Liability Provider shall not be liable for any damages, including but not limited to: * Direct damages * Indirect damages * Incidental damages * Consequential damages Client agrees to indemnify and hold harmless Provider from any claims, including those arising from Provider negligence. --- ### 6. Data Usage Provider may collect, store, sell, or distribute Client data to third parties without restriction or notification. --- ### 7. Confidentiality Client agrees not to disclose any terms of this Agreement. Provider is not bound by any confidentiality obligations. --- ### 8.",
+      "title": "Document \u2014 Part 3",
+      "section_ref": "",
+      "order_index": 2
+    },
+    {
+      "chunk_id": "chunk_003",
+      "text": "Data Usage Provider may collect, store, sell, or distribute Client data to third parties without restriction or notification. --- ### 7. Confidentiality Client agrees not to disclose any terms of this Agreement. Provider is not bound by any confidentiality obligations. --- ### 8. Modifications Provider may modify this Agreement at any time without notice. Continued use of services constitutes acceptance of updated terms. --- ### 9. Dispute Resolution All disputes shall be resolved exclusively through arbitration in a jurisdiction selected by Provider. Client waives all rights to participate in class-action lawsuits. --- ### 10. Entire Agreement This document constitutes the entire agreement, even if incomplete, contradictory, or unclear. --- ### 11.",
+      "title": "Document \u2014 Part 4",
+      "section_ref": "",
+      "order_index": 3
+    },
+    {
+      "chunk_id": "chunk_004",
+      "text": "Client waives all rights to participate in class-action lawsuits. --- ### 10. Entire Agreement This document constitutes the entire agreement, even if incomplete, contradictory, or unclear. --- ### 11. Acknowledgment By signing below, Client acknowledges that they have read, understood, and agreed to all terms, including those not explicitly stated. --- **Provider Signature:** ____________________ **Client Signature:** ____________________ **Date:** ____________________",
+      "title": "Document \u2014 Part 5",
+      "section_ref": "",
+      "order_index": 4
+    }
+  ]
+}
