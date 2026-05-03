@@ -190,12 +190,10 @@
             FullScreenViewer.classList.remove("closed");
             FullScreenViewerTitle.innerHTML = name;
             FullScreenViewerPDF.setPDF(file);
-            console.log("indes: " + index);
-            console.log("Flags: " + APICalls.fileFlagStorageList[index]);
+            
             APICalls.currentFile = index;
             redFlagsBody.innerHTML = "";
             for(var i = 0; i < APICalls.fileFlagStorageList[index].length; i++){
-                console.log(APICalls.fileFlagStorageList[index][i]);
                 const currentFlag = { ...APICalls.fileFlagStorageList[index][i] };
                 redFlagsBody.addFlag(currentFlag);
             }
